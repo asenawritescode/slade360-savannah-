@@ -44,7 +44,7 @@ export default function Home() {
             <div className="lg:shrink-0 lg:relative">
               <div className="lg:relative md:relative lg:w-[170%]">
                 <img
-                  className="w-1/4 md:relative lg:absolute"
+                  className="w-1/2 md:relative lg:absolute"
                   style={{ display: "block" }}
                   src="/auth.svg"
                   alt=""
