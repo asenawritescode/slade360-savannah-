@@ -3,10 +3,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+      const router= useRouter();
+
   const [memberNumber, setMemberNumber] = useState("DEMO/001");
   const [insuranceCompany, setInsuranceCompany] = useState(457);
+  const [data, setData] = useState(null);
 
   const [token, setToken] = useState(null);
 
@@ -51,8 +55,17 @@ const page = () => {
     console.log(memberNumber, insuranceCompany);
     memberNumber && insuranceCompany
       ? fetch(url, { method: "GET", headers })
-          .then((response) =>{ return response.json()})
-          .then((data) => console.log(data))
+          .then((response) => {
+            return response.json();
+          })
+            .then((data) => {
+                setData(data); 
+                // store to local storage
+                localStorage.setItem("data", JSON.stringify(data));
+                  router.push("/cards");
+
+                
+            })
           .catch((error) => {
             console.log(error);
           })
@@ -111,7 +124,7 @@ const page = () => {
                     </div>
                     <div className="relative w-full lg:max-w-sm">
                       <select
-                        className="w-full p-2.5  border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600 py-2 text-sm text-gray-700 dark:text-gray-200"
+                        className="w-full p-2.5  border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600 py-2 text-sm text-gray-700 dark:text-black"
                         onChange={(e) => setInsuranceCompany(e.target.value)}
                       >
                         <option
