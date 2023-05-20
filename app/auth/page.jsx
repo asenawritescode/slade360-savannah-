@@ -1,13 +1,50 @@
+"use client";
+
+import axios from "axios"
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const page = () => {
+    const [memberNumber, setMemberNumber] = useState("DEMO/001");
+    const [insuranceCompany, setInsuranceCompany] = useState(457);
+
+    const url =
+      "https://provider-edi-api.multitenant.slade360.co.ke/v1/beneficiaries/member_eligibility/";
+
+
+    const headers = {
+      Accept: "*/*",
+      Authorization: "Login to authorize",
+      "Content-Type": "application/json",
+    };
+    const getUser =  async() => {
+        try {
+            const response = await axios.post(
+                url,
+                {
+                    memberNumber,
+                    insuranceCompany,
+                }
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
+ 
   return (
-    <section class="h-screen">
+    <section>
       <div class="container h-full px-6 py-24">
         <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
           <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-            <img
-              src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-              class="w-full"
+            <Image
+              src="/auth.svg"
+                          class="w-full"
+                          width={500}
+                            height={500}
               alt="Phone image"
             />
           </div>
@@ -48,25 +85,54 @@ const page = () => {
                       />
                     </div>
                     <div className="relative w-full lg:max-w-sm">
-                      <select className="w-full p-2.5 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600 py-2 text-sm text-gray-700 dark:text-gray-200">
-                        <option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                          ReactJS Dropdown
+                      <select
+                        className="w-full p-2.5 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600 py-2 text-sm text-gray-700 dark:text-gray-200"
+                        onChange={(e) => console.log(e.target.value)}
+                      >
+                        <option
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          value="457"
+                        >
+                          Jubilee Health Insurance Limited{" "}
+                        </option>
+                        <option
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          value="2001"
+                        >
+                          APA Insurance Company{" "}
+                        </option>
+                        <option
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          value="2011"
+                        >
+                          Madison General Insurance Kenya{" "}
+                        </option>
+                        <option
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          value="2002"
+                        >
+                          Britam General Insurance{" "}
+                        </option>
+                        <option
+                          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          value="2020"
+                        >
+                          Minet Insurance Brokers Limited{" "}
+                        </option>
+                        <option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" value="2023">
+                          Savannah Informatics Insurance Scheme{" "}
                         </option>
                         <option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                          Laravel 9 with React
+                          GNRSH Insurance Scheme{" "}
                         </option>
-                        <option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                          React with Tailwind CSS
-                        </option>
-                        <option class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                          React With Headless UI
-                        </option>
+                       
                       </select>
                     </div>
 
                     <button
                       type="submit"
-                      class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                          class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        onClick={getUser}
                     >
                       Sign in
                     </button>
@@ -82,7 +148,3 @@ const page = () => {
 };
 
 export default page;
-
-
-
-
