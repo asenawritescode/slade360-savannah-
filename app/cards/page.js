@@ -107,6 +107,8 @@ const page = () => {
                     </div>
                 </div>
                 <div className="container mx-auto mt-12">
+                    <div className='ml-3 text-3xl font-semibold'>Benefits</div>
+                    
                     {insuarance.map((item, index) => { 
 
                         <p key={index} className='ml-3 text-3xl font-semibold text-gray-500'>{item.name}</p>
@@ -115,7 +117,7 @@ const page = () => {
                     <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3 m-5">
                         {benefits?.map((item, index) => { 
                             return (
-                                <GenerateCard key={index} benefitName={item.benefitName} isAvailable={item.status} type={item.benefitType} availableBalance={item.availableBalance} benefitLimit={item.benefitLimit} visitLimit={item.visitLImit} reservedAmount={item.reservedAmount} copayAmount={item.copayValue} copayType={item.copayType} copayAppliesTo="Consultation" />
+                                <GenerateCard key={index} benefitName={item.benefitName} isAvailable={item.status} type={item.benefitType} availableBalance={item.availableBalance} benefitLimit={item.benefitLimit} visitLimit={item.visitLimit} reservedAmount={item.reservedAmount} copayAmount={item.copayValue} copayType={item.copayType} copayAppliesTo="Consultation" />
                             )
                         })}
                         {/* {generateCard('Benefit 1', true, 'Type A', 1200, 1200, 1200, 1200)}

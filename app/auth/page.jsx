@@ -8,8 +8,8 @@ import { useRouter } from "next/navigation";
 const page = () => {
       const router= useRouter();
 
-  const [memberNumber, setMemberNumber] = useState("DEMO/001");
-  const [insuranceCompany, setInsuranceCompany] = useState(457);
+  const [memberNumber, setMemberNumber] = useState("");
+  const [insuranceCompany, setInsuranceCompany] = useState('');
   const [data, setData] = useState(null);
 
   const [token, setToken] = useState(null);
@@ -71,7 +71,13 @@ const page = () => {
           })
       : alert("Fill in the data");
   };
+  const handleMemberNoChange = (e) => {
+    setMemberNumber(e.target.value);
+  };
 
+  const handleCompanyChange = (e) => {
+    setInsuranceCompany(e.target.value);
+  };
   return (
     <section>
       <div class="container h-full px-6 py-24">
@@ -113,19 +119,20 @@ const page = () => {
                         Member Number
                       </label>
                       <input
+                        required
                         type="text"
                         name="member_number"
-                        onChange={(e) => setMemberNumber(e.target.value)}
+                        onChange={handleMemberNoChange}
                         id="member_number"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="23UUAHD62"
-                        required
+                        
                       />
                     </div>
                     <div className="relative w-full lg:max-w-sm">
                       <select
                         className="w-full p-2.5  border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600 py-2 text-sm text-gray-700 dark:text-black"
-                        onChange={(e) => setInsuranceCompany(e.target.value)}
+                        onChange={handleCompanyChange}
                       >
                         <option
                           class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -170,7 +177,7 @@ const page = () => {
                     </div>
 
                     <button
-                      type="submit"
+                      
                       class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                       onClick={(e) => {
                         e.preventDefault();
